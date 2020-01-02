@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 生产环境版本，优化了尺寸和速度 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  <style>
+    .active {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+<body>
+  <!-- 宿主文件 -->
+  <div id="app"></div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          title: 'hello, VUE!',
+          course: '',
+          courses: ['web全栈', 'web高级'],
+          selectedCourse: '',
+          selectedNum: '',
+        };
+      },
+      methods: {
+        addCourse() {
+          this.courses.push(this.course);
+          this.course = '';
+        }
+      },
+      render() {
+        with(this){return _c('div',{attrs:{"id":"app"}},[_c('h2',{attrs:{"title":title}},[_v("\n      "+_s(title)+"\n    ")]),_v(" "),_c('ul',_l((courses),function(item,index){return _c('li',{key:index,class:{active: selectedCourse === item},on:{"click":function($event){selectedCourse = item}}},[_v("\n        "+_s(item)+"\n      ")])}),0),_v(" "),_c('ul',_l((5),function(n){return _c('li',{key:n,style:({backgroundColor: (selectedNum === n ? '#dddddd' : 'transparent')}),on:{"click":function($event){selectedNum = n}}},[_v("\n        "+_s(n)+"\n      ")])}),0),_v(" "),_c('p',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(course),expression:"course"}],attrs:{"type":"text"},domProps:{"value":(course)},on:{"keydown":function($event){if(!$event.type.indexOf('key')&&_k($event.keyCode,"enter",13,$event.key,"Enter"))return null;return addCourse($event)},"input":function($event){if($event.target.composing)return;course=$event.target.value}}}),_v("\n      "+_s(course)+"\n      "),_c('button',{on:{"click":addCourse}},[_v("增加")])]),_v(" "),_c('p')])}
+      }
+    });
+
+    // 1. 动态设置值
+    // let index = 0;
+    // setInterval(() => {
+    //   app.title = `mua~${index++}, VUE!`;
+    // }, 1000);
+
+    // 2. v-bind:title="title" | :title="title"
+
+    console.log(app.$options.render);
+  </script>
+  
+</body>
+</html>
