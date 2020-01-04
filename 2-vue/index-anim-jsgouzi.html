@@ -35,13 +35,13 @@
 
     /* 动画相关 */
     /* to 为最后一帧, 不带为初始帧 */
-    .fade-enter, .fade-leave-to {
+    /* .fade-enter, .fade-leave-to {
       opacity: 0;
-    }
+    } */
     /* 可省略 */
-    .fade-enter-to, .fade-leave {
+    /* .fade-enter-to, .fade-leave {
       opacity: 1;
-    }
+    } */
     .fade-enter-active, .fade-leave-active {
       transition: all 1s;
     }
@@ -222,8 +222,14 @@
       props: ['show'],
       template: `
         <!-- 通过 slot 插槽获取传入的内容 -->
-        <!-- 动画组件 transition 可自定义类名称 | 可完全由 js 钩子函数控制 -->
-        <transition name="fade">
+        <!-- 动画组件 transition 可自定义类名称 | 可完全由 js 钩子函数控制 | :css="false" 禁用css -->
+        <transition
+          name="fade"
+          @before-enter="beforeEnter"
+          @enter="enter"
+          @before-leave="beforeLeave"
+          @leave="leave"
+        >
           <div class="message-box" v-if="show">
             <!-- 具名插槽 -->
             <slot name="title"></slot>
@@ -242,8 +248,23 @@
         });
       },
       methods: {
-        a() {},
-        b() {},
+        beforeEnter(el) {
+          el.style.opacity = 0;
+        },
+        enter(el, done) {
+          // 出发回流激活动画
+          document.body.offsetHeight;
+
+          el.style.opacity = 1;
+          el.addEventListener('transitionend', done);
+        },
+        beforeLeve(el) {
+          el.style.opacity = 1;
+        },
+        leave(el, done) {
+          el.style.opacity = 0;
+          el.addEventListener('transitionend', done);
+        },
       },
     });
 
