@@ -9,6 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <!-- 生产环境版本，优化了尺寸和速度 -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  <script src="./plugins/heading.js"></script>
   <style>
     .active {
       background-color: #dddddd;
@@ -172,26 +173,26 @@
     });
 
     // heading 组件 render 控制
-    Vue.component('heading', {
-      props: {
-        level: {
-          type: String,
-          required: true,
-          default: '1',
-        },
-        aaaa: String,
-      },
-      render(h) {
-        console.log(111, this)
-        // snabbdom
-        // 返会 createElement 构造的VNode
-        return h(
-          `h${this.level}`, // 参数1: tagName
-          // 参数2: 传递数据
-          this.$slots.default, // 参数3: childern
-        );
-      }
-    });
+    // Vue.component('heading', {
+    //   props: {
+    //     level: {
+    //       type: String,
+    //       required: true,
+    //       default: '1',
+    //     },
+    //     aaaa: String,
+    //   },
+    //   render(h) {
+    //     console.log(111, this)
+    //     // snabbdom
+    //     // 返会 createElement 构造的VNode
+    //     return h(
+    //       `h${this.level}`, // 参数1: tagName
+    //       // 参数2: 传递数据
+    //       this.$slots.default, // 参数3: childern
+    //     );
+    //   }
+    // });
 
     // 函数式组件
     Vue.component('heading-func', {
