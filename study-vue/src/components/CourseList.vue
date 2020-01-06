@@ -6,7 +6,9 @@
       :class="{ active: selectedCourse === item.id }"
       @click="selectedCourse = item.id"
     >
-      {{ item.name }} - {{ item.price | currency("aaa", "bbb") }}
+      <router-link :style="{ display: 'block' }" :to="`/detail/${item.id}`">
+        {{ item.name }} - {{ item.price | currency("aaa", "bbb") }}
+      </router-link>
     </li>
   </ul>
 </template>
