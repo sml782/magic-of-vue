@@ -3,6 +3,8 @@
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
 
+    <CSSModule />
+
     <Heading level="1">
       {{ title }}
     </Heading>
@@ -61,6 +63,7 @@ import Heading from "@/components/Heading";
 import CourseList from "@/components/CourseList";
 import Message from "@/components/Message";
 import CourseAdd from "@/components/CourseAdd";
+import CSSModule from "@/components/CSSModule";
 import { getCourses } from "@/api/course";
 
 export default {
@@ -70,7 +73,8 @@ export default {
     Heading,
     CourseList,
     Message,
-    CourseAdd
+    CourseAdd,
+    CSSModule
   },
   data() {
     return {
@@ -159,7 +163,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+$a: 3;
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -171,7 +176,7 @@ export default {
 .message-box {
   width: 500px;
   padding: 10px 20px;
-  background: #4fc08d;
+  background: $success-color;
   border: 5px solid #cccccc;
   border-radius: 6px;
   position: fixed;
@@ -180,10 +185,10 @@ export default {
   z-index: 999;
 }
 .message-box.success {
-  background: #4fc08d;
+  background: $success-color;
 }
 .message-box.error {
-  background: #ff0000;
+  background: $error-color;
 }
 .message-box-close {
   cursor: pointer;
@@ -207,4 +212,18 @@ export default {
 .fade-leave-active {
   transition: all 1s;
 }
+
+/* 深度选择器 */
+// 只有 css 生效, scss|less 不生效
+// #app >>> p {
+//   background-color: red;
+// }
+
+/* sass 深度选择器 */
+// #app /deep/ p {
+//   background-color: blue;
+// }
+// #app ::v-deep p {
+//   background-color: blue;
+// }
 </style>
