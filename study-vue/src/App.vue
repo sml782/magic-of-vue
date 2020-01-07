@@ -5,6 +5,12 @@
       |
       <router-link to="/admin">管理</router-link>
     </nav>
+
+    <div v-if="isLogin">
+      {{ welcome }}
+      <button @click="logout">注销</button>
+    </div>
+
     <!-- 路由出口 -->
     <keep-alive include="admin" max="10">
       <router-view />
@@ -13,6 +19,8 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from "vuex";
+
 export default {
   name: "app",
   watch: {
@@ -23,6 +31,21 @@ export default {
         console.log({ newRoute, oldRoute });
       }
     }
+  },
+  computed: {
+    ...mapState("user", ["isLogin"]),
+    ...mapGetters("user", ["welcome"])
+  },
+  methods: {
+    logout() {
+      // 提交 mutation 出发更改状态
+      // this.$store.commit("logout");
+      // 提交 action
+      // this.$store.dispatch("user/logout");
+      this["user/logout"]();
+      this.$router.push("/login");
+    },
+    ...mapActions(["user/logout"])
   }
 };
 </script>
