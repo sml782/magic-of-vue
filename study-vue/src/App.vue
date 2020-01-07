@@ -6,7 +6,9 @@
       <router-link to="/admin">管理</router-link>
     </nav>
     <!-- 路由出口 -->
-    <router-view />
+    <keep-alive include="admin" max="10">
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 

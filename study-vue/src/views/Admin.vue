@@ -140,6 +140,14 @@ export default {
     //     this.lastName = names[names.length - 1]
     //   }
     // }
+  },
+
+  // keep-alive
+  activated() {
+    console.log("actived");
+  },
+  deactivated() {
+    console.log("deactived");
   }
 
   // 监听器
