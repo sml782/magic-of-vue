@@ -4,11 +4,15 @@
       v-for="(item, index) in courses"
       :key="index"
       :class="{ active: selectedCourse === item.id }"
-      @click="selectedCourse = item.id"
+      @click="toDetail(item)"
     >
-      <router-link :style="{ display: 'block' }" :to="`/detail/${item.id}`">
+      {{ item.name }} - {{ item.price | currency("aaa", "bbb") }}
+      <!-- <router-link
+        :style="{ display: 'block' }"
+        :to="`/admin/detail/${item.id}`"
+      >
         {{ item.name }} - {{ item.price | currency("aaa", "bbb") }}
-      </router-link>
+      </router-link> -->
     </li>
   </ul>
 </template>
@@ -35,6 +39,18 @@ export default {
   filters: {
     currency(value, symbol = "$", a) {
       return `${symbol} ${a} ${value || 0}`;
+    }
+  },
+  methods: {
+    toDetail(item) {
+      this.selectedCourse = item.id;
+      // this.$router.push(`/admin/detail/${item.id}`);
+      this.$router.push({
+        name: "qdetail",
+        params: {
+          id: item.id
+        }
+      });
     }
   }
 };

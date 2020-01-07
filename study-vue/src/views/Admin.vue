@@ -51,6 +51,8 @@
         请输入课程名称!
       </template>
     </message>
+
+    <router-view />
   </div>
 </template>
 
