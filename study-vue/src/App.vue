@@ -12,7 +12,16 @@
 
 <script>
 export default {
-  name: "app"
+  name: "app",
+  watch: {
+    immediate: true,
+    $route: {
+      handler(newRoute, oldRoute) {
+        console.log("$route change", this);
+        console.log({ newRoute, oldRoute });
+      }
+    }
+  }
 };
 </script>
 

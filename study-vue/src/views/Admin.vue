@@ -156,6 +156,13 @@ export default {
   //       totalCourse = newValue.length;
   //     }
   //   }
+  // },
+
+  // beforeRouteEnter(to, from, next) {
+  //   if (window.isLogin) {
+  //     return next();
+  //   }
+  //   return next(`/login?redirect=${to.fullPath}`);
   // }
 };
 </script>
