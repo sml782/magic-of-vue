@@ -11,7 +11,7 @@ export default {
     aaaa: String
   },
   render(h, context) {
-    console.log("函数式组件的上下文", context, context.slots());
+    // console.log("函数式组件的上下文", context, context.slots());
     // context.slots() 相当于 this.$slots
 
     const {

@@ -117,7 +117,7 @@ export default {
 
   // 组件已挂载
   mounted() {
-    console.log(this.$refs);
+    // console.log(this.$refs);
   },
 
   // 计算属性

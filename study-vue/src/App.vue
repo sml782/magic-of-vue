@@ -19,7 +19,7 @@ export default {
     immediate: true,
     $route: {
       handler(newRoute, oldRoute) {
-        console.log("$route change", this);
+        // console.log("$route change", this);
         console.log({ newRoute, oldRoute });
       }
     }
