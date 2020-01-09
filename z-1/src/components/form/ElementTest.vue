@@ -1,7 +1,7 @@
 <template>
   <el-form :model="userInfo" :rules="rules" ref="loginForm">
-    <el-form-item label="用户名" prop="name">
-      <el-input v-model="userInfo.name"></el-input>
+    <el-form-item label="用户名" prop="username">
+      <el-input v-model="userInfo.username"></el-input>
     </el-form-item>
     <el-form-item label="密码" prop="password">
       <el-input v-model="userInfo.password" type="password"></el-input>
@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       userInfo: {
-        username: "",
+        username: "tom",
         password: ""
       },
       rules: {

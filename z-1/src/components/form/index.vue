@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <ElementTest></ElementTest> -->
+    <!-- <ElementTest /> -->
 
     <!-- KForm -->
     <KForm :model="userInfo" :rules="rules" ref="loginForm">
