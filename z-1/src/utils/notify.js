@@ -13,4 +13,11 @@ function notify(options) {
   document.body.appendChild(instance.$el);
 }
 
-export default notify
+// export default notify;
+export default {
+  install(Vue) {
+    Vue.prototype.$notify = function(options) {
+      return notify(options);
+    }
+  }
+}
