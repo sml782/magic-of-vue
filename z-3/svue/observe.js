@@ -13,10 +13,11 @@ function defineReactive(obj, key, value) {
     },
     set(nextValue) {
       if (nextValue === value) {
-        return console.warn('你这值也没变呀');
+        return console.warn('你这值也没变呀! 老哥');
       }
-
-      value = nextData;
+      debugger;
+      value = nextValue;
+      dep.notify();
     }
   });
 }

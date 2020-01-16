@@ -10,6 +10,7 @@ class Watcher {
     this.$callback = updateCallback || (() => {});
 
     this.keyList = key.split('.');
+    this.$key = key;
     this.initInsert();
   }
 
@@ -37,7 +38,8 @@ class Watcher {
   initInsert() {
     Dep.target = this;
     Dep.keyList = this.keyList;
-    this.getData();
+    this.$vm[this.$key];
+    // this.getData();
     Dep.target = null;
   }
 
@@ -47,6 +49,6 @@ class Watcher {
    * @memberof Watcher
    */
   update() {
-    this.$callback.call(this.$vm, this.getData());
+    this.$callback.call(this.$vm, this.$vm[this.$key]);
   }
 }

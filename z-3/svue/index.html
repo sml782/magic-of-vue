@@ -31,8 +31,11 @@
       },
     });
     console.log(app);
-    setInterval(() => {
-      app.counter++
+    let timer = setInterval(() => {
+      app.counter++;
+      if (app.counter > 10) {
+        clearInterval(timer);
+      }
       // app.$data.counter++
     }, 1000);
     
