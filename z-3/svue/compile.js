@@ -163,6 +163,22 @@ class Compiler {
   }
 
   /**
+   * 编译 `html` 指令
+   *
+   * @param {HTMLElement} node element
+   * @param {string} [attrValue=''] 指令值
+   * @memberof Compiler
+   */
+  model(node, attrValue = '') {
+    // 开始注册编译更新函数
+    this.update(node, attrValue, 'model');
+
+    node.addEventListener('input', e => {
+      this.$vm[attrValue] = e.target.value;
+    })
+  }
+
+  /**
    * 派发更新函数
    *
    * @param {HTMLElement} node element
@@ -208,5 +224,16 @@ class Compiler {
    */
   htmlUpdate(node, value = '') {
     node.innerHTML = value;
+  }
+
+  /**
+   *  更新model
+   *
+   * @param {HTMLElement} node element
+   * @param {string} value 新值
+   * @memberof Compiler
+   */
+  modelUpdate(node, value = '') {
+    node.value = value;
   }
 }

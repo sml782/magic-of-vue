@@ -15,7 +15,7 @@ function defineReactive(obj, key, value) {
       if (nextValue === value) {
         return console.warn('你这值也没变呀! 老哥');
       }
-      debugger;
+
       value = nextValue;
       dep.notify();
     }

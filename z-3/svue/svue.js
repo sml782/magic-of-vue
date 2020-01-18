@@ -24,7 +24,6 @@ class SVue {
 
     proxy(this, '$data');
 
-    debugger;
     new Compiler(this, options.el);
   }
 }

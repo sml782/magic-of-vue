@@ -12,8 +12,11 @@
     <p>{{counter}}</p>
 
     <!-- 指令 -->
-    <!-- <p k-text="counter"></p>
-    <p k-html="desc"></p> -->
+    <p s-text="counter"></p>
+    <p s-html="desc"></p>
+
+    <!-- 双向绑定 -->
+    <input type="text" s-model="desc" />
   </div>
 
   <script src="./compile.js"></script>
