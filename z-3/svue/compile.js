@@ -98,6 +98,17 @@ class Compiler {
   }
 
   /**
+   * 判断是否是事件绑定
+   *
+   * @param {string} [name=''] 属性 name
+   * @returns {boolean} 是否是指令
+   * @memberof Compiler
+   */
+  isEvent(name = '') {
+    return name.startsWith('@');
+  }
+
+  /**
    * 编译差值文本
    *
    * @param {HTMLElement} node element
@@ -122,20 +133,42 @@ class Compiler {
 
     Array.from(nodeAttrs).map(attr => {
       const { name: attrName = '', value: attrValue = '' } = attr;
-      if (!this.isDirective(attrName)) {
-        return;
-      }
-
       if (!attrValue) {
         return;
       }
 
-      const dirKey = attrName.slice(2);
-      if (!this[dirKey]) {
-        return;
+      if (this.isEvent(attrName)) {
+        const nativeKey = attrName.slice(1);
+        return this.eventHandler(node, nativeKey, attrValue);
       }
-      return this[dirKey](node, attrValue);
+
+      if (this.isDirective(attrName)) {
+        const dirKey = attrName.slice(2);
+        if (!this[dirKey]) {
+          return;
+        }
+        return this[dirKey](node, attrValue);
+      }
     });
+  }
+
+  /**
+   * 编译事件
+   *
+   * @param {HTMLElement} node element
+   * @param {string} nativeKey 原生事件名
+   * @param {string} eventName 绑定事件名
+   * @memberof Compiler
+   */
+  eventHandler(node, nativeKey, eventName) {
+    const methods = this.$vm.$options.methods || {};
+    const fn = methods[eventName];
+
+    if (!fn) {
+      return;
+    }
+
+    node.addEventListener(nativeKey, fn.bind(this.$vm));
   }
 
   /**
